@@ -1,4 +1,4 @@
-package com.automation.ui;
+package com.automation.petclinic;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -12,9 +12,8 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class Github {
-    WebDriver driver;
-
+public class Sites {
+    private WebDriver driver;
     @BeforeClass
     public void setUpDriver() {
         WebDriverManager.chromedriver().setup();
@@ -24,7 +23,7 @@ public class Github {
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait((5000), TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
     }
 
     @AfterMethod
@@ -33,10 +32,11 @@ public class Github {
     }
 
     @Test
-    public void regisrtation(){
-        driver.get("https://github.com/login");
-      // WebElement driver.findElements(By.id("login_field"));
-
+    public void domTest(){
+        driver.get("http://the-internet.herokuapp.com/challenging_dom");
+        getInfo("Adipisci5");
     }
-
+    public String getInfo(String text){
+        return driver.findElement(By.xpath("//tr/td[text()='"+text+"']/following-sibling::td")).getText();
+    }
 }

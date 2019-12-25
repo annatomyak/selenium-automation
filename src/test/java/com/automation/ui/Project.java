@@ -49,7 +49,7 @@ public class Project {
         String webdriverTitle="Selenium WebDriver";
 
 
-        List<String>titleList=new ArrayList<>()
+        List<String>titleList=new ArrayList<>();
         for (WebElement product : seleniumProject) {
       WebElement productTitle= product.findElement(By.tagName("h2"));
 
