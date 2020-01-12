@@ -1,44 +1,20 @@
 package com.automation.homework;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import com.automation.homework.pageobject.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.*;
 
-public class AddOwnersTest {
-    private WebDriver driver;
-    @BeforeClass
-    public void setUpDriver() {
-        WebDriverManager.chromedriver().setup();
+public class AddOwnersTest extends TestBase {
 
-    }
-
-    @BeforeMethod
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
 
 
     @Test
     public void addOwnerPositiveTest(){
-        goToOwnerPage();
+        goToOwnersPage();
         enterFirstName("Anna");
         enterLastName("Test");
         enterAddress("Gagarina street");
@@ -53,7 +29,7 @@ public class AddOwnersTest {
     }
     @Test
     public void addOwnerTestWithOneLetterInFirstName(){
-        goToOwnerPage();
+        goToOwnersPage();
         enterFirstName("A");
         enterLastName("Test");
         enterAddress("Gagarina street");
@@ -65,7 +41,7 @@ public class AddOwnersTest {
     }
     @Test
     public void addOwnerTestWithOneLetterInSecondName(){
-        goToOwnerPage();
+        goToOwnersPage();
         enterFirstName("Anna");
         enterLastName("T");
         enterAddress("Gagarina street");
@@ -77,7 +53,7 @@ public class AddOwnersTest {
     }
     @Test
     public void addOwnerTestWithLetterInPhone(){
-        goToOwnerPage();
+        goToOwnersPage();
         enterFirstName("Anna");
         enterLastName("Test");
         enterAddress("Gagarina street");
@@ -89,7 +65,7 @@ public class AddOwnersTest {
     }
     @Test
     public void addOwnerTestWithEmptyField(){
-        goToOwnerPage();
+        goToOwnersPage();
         enterFirstName("");
         enterLastName("");
         enterAddress("");
@@ -103,14 +79,6 @@ public class AddOwnersTest {
     }
 
 
-    public void goToOwnerPage(){
-        driver.get("http://139.59.149.247:8000");
-        WebElement ownerMenuItem=driver.findElement(By.xpath("//a[@class='dropdown-toggle'][text()='Owners']"));
-        ownerMenuItem.click();
-        WebElement addOwners= driver.findElement(By.xpath( "/html/body/app-root/div[1]/nav/div/ul/li[2]/ul/li[2]/a/span[2]"));
-        addOwners.click();
-       ;
-    }
     public void clickAddOwner(){
         WebElement ownerAddButton=driver.findElement(By.xpath("//button[@class='btn btn-default'][text()='Add Owner']"));
         ownerAddButton.click();
@@ -148,16 +116,13 @@ public class AddOwnersTest {
 
     }
     public String assertOwnerInfoInTable(String info ) {
-       // WebElement ownerTable=driver.findElement(By.xpath("//*[@class='table-responsive']"));
        String res="";
-
-        try {
+       try {
             WebElement expectedOwnerInfo=driver.findElement(By.xpath("//a[text()='"+info+"']"));
             res=expectedOwnerInfo.getText();
-        } catch (NoSuchElementException ex) {
-        }
+        } catch (NoSuchElementException ex) { }
 
-        return res;
+       return res;
     }
     public String errorOneLetterinName(){
         WebElement errorOneletterInFirstName=driver.findElement(By.xpath("//span[@class='help-block']"));
