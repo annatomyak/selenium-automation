@@ -1,20 +1,18 @@
 package com.automation.homework.pageobject.owners;
-
 import com.automation.homework.pageobject.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import static org.testng.Assert.assertTrue;
 
 public class NewOwnerPage extends BasePage {
 
-    private By firstNameField = By.id("firstName");
-    private By lastNameField =By.id("lastName");
-    private By addressField =By.id("address");
-    private By cityField = By.id("city");
-    private By telephoneField = By.id("telephone");
+    public By firstNameField = By.id("firstName");
+    public By lastNameField =By.id("lastName");
+    public By addressField =By.id("address");
+    public By cityField = By.id("city");
+    public By telephoneField = By.id("telephone");
 
     public NewOwnerPage(WebDriver driver) {
         super(driver);
@@ -33,26 +31,7 @@ public class NewOwnerPage extends BasePage {
         firstNameInput.clear();
         firstNameInput.sendKeys(firstName);
     }
-    public void clearFirstName() {
-        WebElement firstNameInput = driver.findElement(firstNameField);
-        firstNameInput.sendKeys(Keys.BACK_SPACE);
-    }
-    public void clearLastName() {
-        WebElement lastNameFieldInput = driver.findElement(lastNameField);
-        lastNameFieldInput.sendKeys(Keys.BACK_SPACE);
-    }
-    public void clearAdress() {
-        WebElement addressFieldInput = driver.findElement(addressField);
-        addressFieldInput.sendKeys(Keys.BACK_SPACE);
-    }
-    public void clearCity() {
-        WebElement cityFieldInput = driver.findElement(cityField);
-        cityFieldInput.sendKeys(Keys.BACK_SPACE);
-    }
-    public void clearPhone() {
-        WebElement telephoneFieldInput = driver.findElement(telephoneField);
-        telephoneFieldInput.sendKeys(Keys.BACK_SPACE);
-    }
+
 
     public void setLastName(String lastName) {
         WebElement lastNameFieldInput = driver.findElement(lastNameField);

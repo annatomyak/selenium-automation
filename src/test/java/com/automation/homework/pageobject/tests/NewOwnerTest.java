@@ -69,7 +69,6 @@ public class NewOwnerTest extends TestBase {
         owner.setTelephone("1818184284");
         newOwnerPage = ownersPage.clickAddOwnerBtn();
         newOwnerPage.fillOwner(owner);
-        newOwnerPage.clearFirstName();
         ownersPage = newOwnerPage.clickAddOwnerButton();
         assertEquals(newOwnerPage.errorOneLetterinName(), "Last name must be at least 2 characters long");
     }
@@ -100,7 +99,7 @@ public class NewOwnerTest extends TestBase {
         owner.setTelephone("1818184284");
         newOwnerPage = ownersPage.clickAddOwnerBtn();
         newOwnerPage.fillOwner(owner);
-        newOwnerPage.clearFirstName();
+        clearField(newOwnerPage.firstNameField);
         ownersPage = newOwnerPage.clickAddOwnerButton();
         assertEquals(newOwnerPage.errorEmptyFild(), "First name is required");
 
@@ -118,7 +117,7 @@ public class NewOwnerTest extends TestBase {
         owner.setTelephone("1818184284");
         newOwnerPage = ownersPage.clickAddOwnerBtn();
         newOwnerPage.fillOwner(owner);
-        newOwnerPage.clearLastName();
+        clearField(newOwnerPage.lastNameField);
         ownersPage = newOwnerPage.clickAddOwnerButton();
         assertEquals(newOwnerPage.errorEmptyFild(), "Last name is required");
 
@@ -136,7 +135,7 @@ public class NewOwnerTest extends TestBase {
         owner.setTelephone("1818184284");
         newOwnerPage = ownersPage.clickAddOwnerBtn();
         newOwnerPage.fillOwner(owner);
-        newOwnerPage.clearAdress();
+        clearField(newOwnerPage.addressField);
         ownersPage = newOwnerPage.clickAddOwnerButton();
         assertEquals(newOwnerPage.errorEmptyFild(), "Address is required");
 
@@ -154,7 +153,7 @@ public class NewOwnerTest extends TestBase {
         owner.setTelephone("1818184284");
         newOwnerPage = ownersPage.clickAddOwnerBtn();
         newOwnerPage.fillOwner(owner);
-        newOwnerPage.clearCity();
+        clearField(newOwnerPage.cityField);
         ownersPage = newOwnerPage.clickAddOwnerButton();
         assertEquals(newOwnerPage.errorEmptyFild(), "City is required");
 
@@ -172,7 +171,7 @@ public class NewOwnerTest extends TestBase {
         owner.setTelephone("1");
         newOwnerPage = ownersPage.clickAddOwnerBtn();
         newOwnerPage.fillOwner(owner);
-        newOwnerPage.clearPhone();
+        clearField(newOwnerPage.telephoneField);
         ownersPage = newOwnerPage.clickAddOwnerButton();
         assertEquals(newOwnerPage.errorEmptyFild(), "Phone number is required");
 

@@ -19,17 +19,6 @@ public class OwnersPage extends BasePage {
         return this;
     }
 
-    public List<String> getOwnersNames() {
-        List<String> owners = new ArrayList<>();
-
-        List<WebElement> elements = driver.findElements(By.cssSelector(".ownerFullName>a"));
-        for (WebElement fullName : elements) {
-            owners.add(fullName.getText());
-        }
-
-        return owners;
-    }
-
     public List<Owner> getOwnersList() {
         List<Owner> owners = new ArrayList<>();
         WebElement ownersTable = driver.findElement(By.xpath("//*[@class='table-responsive']"));

@@ -1,14 +1,9 @@
 package com.automation.homework.pageobject.pets;
-
 import com.automation.homework.pageobject.BasePage;
-import com.automation.homework.pageobject.specialities.EditSpecialties;
-import com.automation.homework.pageobject.specialities.SpecialtiesPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 
 import static org.testng.Assert.assertTrue;
@@ -23,10 +18,7 @@ public class PetTypesPage extends BasePage {
         goToUrl("/pettypes", "Pet Types");
         return this;
     }
-    public PetTypesPage openHomePage() {
-        goToUrl("/welcome", "Welcome");
-        return this;
-    }
+
 
     public PetTypesPage editPetTypes() {
 

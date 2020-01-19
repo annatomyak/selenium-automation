@@ -77,7 +77,7 @@ public class SpecialtiesTest extends TestBase {
     @Test
     public void goHomeButtonTest() {
         specialtiesPage.openPage();
-        specialtiesPage.openHomePage();
+        openHomePage();
 
     }
 }

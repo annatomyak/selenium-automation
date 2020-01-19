@@ -22,10 +22,6 @@ public class SpecialtiesPage extends BasePage {
         goToUrl("/specialties", "Specialties");
         return this;
     }
-    public SpecialtiesPage openHomePage() {
-        goToUrl("/welcome", "Welcome");
-        return this;
-    }
 
     public SpecialtiesPage editSpecialties() {
 

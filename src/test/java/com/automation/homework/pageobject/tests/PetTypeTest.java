@@ -14,6 +14,9 @@ public class PetTypeTest extends TestBase {
     private PetTypesPage petTypesPage;
     private NewPetTypesPage newPetTypesPage;
     private PetTypesObject petTypesObject;
+    private String petId="pettypes";
+    private String petName="pettype_name";
+
 
     @BeforeMethod
     public void setUpBeforeTest() {
@@ -26,21 +29,21 @@ public class PetTypeTest extends TestBase {
     public void addPetTypePositiveTest() {
         petTypesPage.openPage();
         newPetTypesPage.clickAddPetTypesButton();
-        petTypesObject.setName("Test5");
+        petTypesObject.setName("Test6");
         newPetTypesPage.fillPetTypes(petTypesObject);
         newPetTypesPage.clickSavePetTypesBtn();
-        assertEquals(getLastItem("pettypes", "pettype_name").getAttribute("value"), "Test5");
+        assertEquals(getLastItem(petId, petName).getAttribute("value"), "Test6");
     }
 
     @Test
     public void addPetTypeWithEmptyFieldTest() {
         petTypesPage.openPage();
-        int countBefore = petTypesPage.getListElements("pettypes").size();
+        int countBefore = petTypesPage.getListElements(petId).size();
         newPetTypesPage.clickAddPetTypesButton();
         petTypesObject.setName("");
         newPetTypesPage.fillPetTypes(petTypesObject);
         newPetTypesPage.clickSavePetTypes();
-        int countAfter = petTypesPage.getListElements("pettypes").size();
+        int countAfter = petTypesPage.getListElements(petId).size();
         assertEquals(countBefore, countAfter);
 
     }
@@ -59,22 +62,22 @@ public class PetTypeTest extends TestBase {
         petTypesObject.setName("xxxx");
         newPetTypesPage.fillPetTypes(petTypesObject);
         petTypesPage.clickUpdate();
-        assertEquals(getLastItem("pettypes", "pettype_name").getAttribute("value"), "xxxx");
+        assertEquals(getLastItem(petId, petName).getAttribute("value"), "xxxx");
     }
 
     @Test
     public void deletePetTypeTest() {
         petTypesPage.openPage();
-        int countBefore = petTypesPage.getListElements("pettypes").size();
+        int countBefore = petTypesPage.getListElements(petId).size();
         petTypesPage.deletePetTypes();
-        int countAfter = petTypesPage.getListElements("pettypes").size();
+        int countAfter = petTypesPage.getListElements(petId).size();
         assertEquals(countBefore - 1, countAfter);
     }
 
     @Test
     public void goHomeButtonTest() {
         petTypesPage.openPage();
-        petTypesPage.openHomePage();
+        openHomePage();
 
     }
 }

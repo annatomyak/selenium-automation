@@ -4,6 +4,7 @@ import com.automation.homework.pageobject.BasePage;
 import com.automation.homework.pageobject.TestBase;
 import com.automation.homework.pageobject.owners.NewOwnerPage;
 import com.automation.homework.pageobject.owners.Owner;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,13 +17,13 @@ public class VeterinariansPage extends BasePage {
 
         super(driver);
     }
-
+    @Step
     public VeterinariansPage openPage() {
         goToUrl("/vets", "Veterinarians");
         return this;
     }
 
-
+    @Step
     public List<VeterinarianObject> getVetsList() {
         List<VeterinarianObject> vets = new ArrayList<>();
         WebElement vetsTable = driver.findElement(By.xpath("//*[@class='table table-striped']"));
@@ -34,13 +35,13 @@ public class VeterinariansPage extends BasePage {
 
         return vets;
     }
-
+    @Step
     public VeterinariansPage clickAddVetBtn() {
         WebElement clickAddVet = driver.findElement(By.xpath("//*[text()='Add Vet']"));
         clickAddVet.click();
         return new VeterinariansPage(driver);
     }
-
+    @Step
     private VeterinarianObject createVet(WebElement userRow) {
         VeterinarianObject veterinarianObject = new VeterinarianObject(driver);
         String fullName = userRow.findElement(By.xpath("./td[1]")).getText();

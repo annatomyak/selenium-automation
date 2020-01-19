@@ -8,8 +8,8 @@ public class SpecialtiesObject extends BasePage {
     public SpecialtiesObject(WebDriver driver) {
         super(driver);
     }
-    private String name;
 
+    private String name;
 
 
     public String getName() {

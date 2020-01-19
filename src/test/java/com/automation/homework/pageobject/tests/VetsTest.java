@@ -1,10 +1,5 @@
 package com.automation.homework.pageobject.tests;
-
 import com.automation.homework.pageobject.TestBase;
-import com.automation.homework.pageobject.owners.Owner;
-import com.automation.homework.pageobject.pets.NewPetTypesPage;
-import com.automation.homework.pageobject.pets.PetTypesObject;
-import com.automation.homework.pageobject.pets.PetTypesPage;
 import com.automation.homework.pageobject.vets.NewVeterinarians;
 import com.automation.homework.pageobject.vets.VeterinarianObject;
 import com.automation.homework.pageobject.vets.VeterinariansPage;
@@ -80,7 +75,7 @@ public class VetsTest extends TestBase {
         veterinarianObject.setLastName("Tom");
         veterinarianObject.setType("Anna");
         newVeterinarians.fillVet(veterinarianObject);
-        newVeterinarians.clearFirstName();
+        clearField(newVeterinarians.firstNameField);
         newVeterinarians.clickAddVetButton();
         assertEquals(newVeterinarians.errorEmptyFild(), "First name is required");
 
@@ -96,7 +91,7 @@ public class VetsTest extends TestBase {
         veterinarianObject.setLastName("T");
         veterinarianObject.setType("Anna");
         newVeterinarians.fillVet(veterinarianObject);
-        newVeterinarians.clearLastName();
+        clearField(newVeterinarians.lastNameField);
         newVeterinarians.clickAddVetButton();
         assertEquals(newVeterinarians.errorEmptyFild(), "Last name is required");
 
