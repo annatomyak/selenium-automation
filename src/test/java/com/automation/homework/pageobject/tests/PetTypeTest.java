@@ -4,12 +4,14 @@ import com.automation.homework.pageobject.TestBase;
 import com.automation.homework.pageobject.pets.NewPetTypesPage;
 import com.automation.homework.pageobject.pets.PetTypesObject;
 import com.automation.homework.pageobject.pets.PetTypesPage;
+import io.qameta.allure.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-
+@Epic("Petclinic")
+@Feature("Pet type")
 public class PetTypeTest extends TestBase {
     private PetTypesPage petTypesPage;
     private NewPetTypesPage newPetTypesPage;
@@ -25,7 +27,10 @@ public class PetTypeTest extends TestBase {
         petTypesObject = new PetTypesObject(driver);
     }
 
-    @Test
+    @Story("Create pet type")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("1121")
+    @Test(description = "Add new valid pet type ")
     public void addPetTypePositiveTest() {
         petTypesPage.openPage();
         newPetTypesPage.clickAddPetTypesButton();
@@ -35,7 +40,10 @@ public class PetTypeTest extends TestBase {
         assertEquals(getLastItem(petId, petName).getAttribute("value"), "Test6");
     }
 
-    @Test
+    @Story("Create pet type")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("1122")
+    @Test(description = "Add new pet type with empty field ")
     public void addPetTypeWithEmptyFieldTest() {
         petTypesPage.openPage();
         int countBefore = petTypesPage.getListElements(petId).size();
@@ -48,14 +56,20 @@ public class PetTypeTest extends TestBase {
 
     }
 
-    @Test
+    @Story("Create pet type")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("1122")
+    @Test(description = "Go to pet type page ")
     public void goToPetTypeTest() {
         petTypesPage.openPage();
 
     }
 
 
-    @Test
+    @Story("Edit pet type")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("1122")
+    @Test(description = "edit pet type ")
     public void editPetTypeTest() {
         petTypesPage.openPage();
         petTypesPage.editPetTypes();
@@ -65,7 +79,10 @@ public class PetTypeTest extends TestBase {
         assertEquals(getLastItem(petId, petName).getAttribute("value"), "xxxx");
     }
 
-    @Test
+    @Story("Delete pet type")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("11522")
+    @Test(description = "delete pet type ")
     public void deletePetTypeTest() {
         petTypesPage.openPage();
         int countBefore = petTypesPage.getListElements(petId).size();
@@ -74,7 +91,10 @@ public class PetTypeTest extends TestBase {
         assertEquals(countBefore - 1, countAfter);
     }
 
-    @Test
+    @Story("Home")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("1162")
+    @Test(description = "go to home ")
     public void goHomeButtonTest() {
         petTypesPage.openPage();
         openHomePage();

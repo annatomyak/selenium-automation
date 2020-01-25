@@ -1,6 +1,7 @@
 package com.automation.homework.pageobject.owners;
 
 import com.automation.homework.pageobject.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Objects;
@@ -18,51 +19,51 @@ import java.util.Objects;
         public Owner(WebDriver driver) {
             super(driver);
         }
-
+        @Step
         public String getFirstName() {
             return firstName;
         }
-
+        @Step
         public void setFirstName(String firstName) {
             this.firstName = firstName;
         }
-
+        @Step
         public String getLastName() {
             return lastName;
         }
-
+        @Step
         public void setLastName(String lastName) {
             this.lastName = lastName;
         }
-
+        @Step
         public String getAddress() {
             return address;
         }
-
+        @Step
         public void setAddress(String address) {
             this.address = address;
         }
-
+        @Step
         public String getCity() {
             return city;
         }
-
+        @Step
         public void setCity(String city) {
             this.city = city;
         }
-
+        @Step
         public String getTelephone() {
             return telephone;
         }
-
+        @Step
         public void setTelephone(String telephone) {
             this.telephone = telephone;
         }
-
+        @Step
         public String getPets() {
             return pets;
         }
-
+        @Step
         public void setPets(String pets) {
             this.pets = pets;
         }

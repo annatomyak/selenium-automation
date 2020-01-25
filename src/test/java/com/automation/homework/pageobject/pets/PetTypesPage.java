@@ -1,5 +1,6 @@
 package com.automation.homework.pageobject.pets;
 import com.automation.homework.pageobject.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,13 +14,13 @@ public class PetTypesPage extends BasePage {
         super(driver);
 
     }
-
+    @Step
     public PetTypesPage openPage() {
         goToUrl("/pettypes", "Pet Types");
         return this;
     }
 
-
+    @Step
     public PetTypesPage editPetTypes() {
 
         WebElement lastEditButton=driver.findElement(By.xpath("//*[@id='pettypes']/tbody/tr[last()]/td[2]/button[1]"));
@@ -29,11 +30,13 @@ public class PetTypesPage extends BasePage {
         assertTrue(isStaneless,"Dont save");
         return new PetTypesPage(driver) ;
     }
+    @Step
     public PetTypesPage clickUpdate() {
         WebElement clickUpdatebutton=driver.findElement(By.xpath("//*[text()='Update']"));
         clickUpdatebutton.click();
         return new PetTypesPage(driver);
     }
+    @Step
     public PetTypesPage deletePetTypes() {
         WebElement clickDeleteButton=driver.findElement(By.xpath("//*[@id='pettypes']/tbody/tr[last()]/td[2]/button[2]"));
         clickDeleteButton.click();
@@ -43,6 +46,7 @@ public class PetTypesPage extends BasePage {
 
         return new PetTypesPage(driver);
     }
+    @Step
     public List<WebElement> getListElements(String id) {
         List<WebElement> elements = driver.findElements(By.xpath("//*[@id='" + id + "']//tbody/tr"));
         return elements;

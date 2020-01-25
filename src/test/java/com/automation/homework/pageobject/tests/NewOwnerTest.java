@@ -3,6 +3,7 @@ import com.automation.homework.pageobject.TestBase;
 import com.automation.homework.pageobject.owners.NewOwnerPage;
 import com.automation.homework.pageobject.owners.Owner;
 import com.automation.homework.pageobject.owners.OwnersPage;
+import io.qameta.allure.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -11,7 +12,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertEquals;
 
-
+@Epic("Petclinic")
+@Feature("Owner")
 public class NewOwnerTest extends TestBase {
     private OwnersPage ownersPage;
     private Owner owner;
@@ -24,8 +26,10 @@ public class NewOwnerTest extends TestBase {
         newOwnerPage = new NewOwnerPage(driver);
 
     }
-
-    @Test
+    @Story("Create Owner")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("1111")
+    @Test(description = "Add new valid Owner test")
     public void addNewOwnerTest() {
 
         ownersPage.openPage();
@@ -42,8 +46,10 @@ public class NewOwnerTest extends TestBase {
 
 
     }
-
-    @Test
+    @Story("Create Owner")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("1112")
+    @Test(description="Add new owner with one letter in name ")
     public void addNewOwnerWithOneLetterInNameTest() {
 
         ownersPage.openPage();
@@ -58,7 +64,10 @@ public class NewOwnerTest extends TestBase {
         assertEquals(newOwnerPage.errorOneLetterinName(), "First name must be at least 2 characters long");
     }
 
-    @Test
+    @Story("Create Owner")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("1116")
+    @Test(description="Add new owner with one letter in last name ")
     public void addNewOwnerWithOneLetterInLastNameTest() {
 
         ownersPage.openPage();
@@ -73,7 +82,10 @@ public class NewOwnerTest extends TestBase {
         assertEquals(newOwnerPage.errorOneLetterinName(), "Last name must be at least 2 characters long");
     }
 
-    @Test
+    @Story("Create Owner")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("1113")
+    @Test(description="Add new owner with  letter in phone ")
     public void addNewOwnerWithDigitsInPhoneTest() {
 
         ownersPage.openPage();
@@ -88,7 +100,10 @@ public class NewOwnerTest extends TestBase {
         assertEquals(newOwnerPage.errorLetterInPhone(), "Phone number only accept digits");
     }
 
-    @Test
+    @Story("Create Owner")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("1115")
+    @Test(description="Add new owner with  empty first name ")
     public void addNewOwnerWithEmptyInNameTest() {
 
         ownersPage.openPage();
@@ -106,7 +121,10 @@ public class NewOwnerTest extends TestBase {
 
     }
 
-    @Test
+    @Story("Create Owner")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("1113")
+    @Test(description="Add new owner with  empty last name ")
     public void addNewOwnerWithEmptyInLastNameTest() {
 
         ownersPage.openPage();
@@ -124,7 +142,10 @@ public class NewOwnerTest extends TestBase {
 
     }
 
-    @Test
+    @Story("Create Owner")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("1114")
+    @Test(description="Add new owner with  empty address ")
     public void addNewOwnerWithEmptyAddressTest() {
 
         ownersPage.openPage();
@@ -142,7 +163,10 @@ public class NewOwnerTest extends TestBase {
 
     }
 
-    @Test
+    @Story("Create Owner")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("1113")
+    @Test(description="Add new owner with  empty city ")
     public void addNewOwnerWithEmptyCityTest() {
 
         ownersPage.openPage();
@@ -160,7 +184,10 @@ public class NewOwnerTest extends TestBase {
 
     }
 
-    @Test
+    @Story("Create Owner")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("1113")
+    @Test(description="Add new owner with  empty phone ")
     public void addNewOwnerWithEmptyPhoneTest() {
 
         ownersPage.openPage();

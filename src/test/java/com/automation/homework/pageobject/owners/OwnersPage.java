@@ -1,6 +1,7 @@
 package com.automation.homework.pageobject.owners;
 
 import com.automation.homework.pageobject.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,12 +14,12 @@ public class OwnersPage extends BasePage {
     public OwnersPage(WebDriver driver) {
         super(driver);
     }
-
+    @Step
     public OwnersPage openPage() {
         goToUrl("/owners", "Owners");
         return this;
     }
-
+    @Step
     public List<Owner> getOwnersList() {
         List<Owner> owners = new ArrayList<>();
         WebElement ownersTable = driver.findElement(By.xpath("//*[@class='table-responsive']"));
@@ -30,13 +31,13 @@ public class OwnersPage extends BasePage {
 
         return owners;
     }
-
+    @Step
     public NewOwnerPage clickAddOwnerBtn() {
         WebElement addOwnerBtn = driver.findElement(By.xpath("//*[text()='Add Owner']"));
         addOwnerBtn.click();
         return new NewOwnerPage(driver);
     }
-
+    @Step
     private Owner createOwner(WebElement userRow) {
         Owner owner = new Owner(driver);
         String fullName = userRow.findElement(By.xpath("./td/a")).getText();

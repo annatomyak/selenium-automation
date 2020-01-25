@@ -4,11 +4,13 @@ import com.automation.homework.pageobject.specialities.EditSpecialties;
 import com.automation.homework.pageobject.specialities.NewSpecialtiesPage;
 import com.automation.homework.pageobject.specialities.SpecialtiesObject;
 import com.automation.homework.pageobject.specialities.SpecialtiesPage;
+import io.qameta.allure.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
-
+@Epic("Petclinic")
+@Feature("Specialties")
 public class SpecialtiesTest extends TestBase {
 
 
@@ -26,7 +28,10 @@ public class SpecialtiesTest extends TestBase {
         editSpecialties = new EditSpecialties(driver);
     }
 
-    @Test
+    @Story("Create specialties")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("11241")
+    @Test(description = "Add new valid specialties ")
     public void addSpecialtiesPositiveTest() {
         specialtiesPage.openPage();
         newSpecialtiesPage.clickAddSpecialityButton();
@@ -36,13 +41,19 @@ public class SpecialtiesTest extends TestBase {
         assertEquals(getLastItem("specialties", "spec_name").getAttribute("value"), "TestAnna");
     }
 
-    @Test
+    @Story("Create specialties")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("11241")
+    @Test(description = "Go to specialties ")
     public void goToSpecialtiesTest() {
         specialtiesPage.openPage();
 
     }
 
-    @Test
+    @Story("Create specialties")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("11241")
+    @Test(description = "Add specialties with empty field ")
     public void addSpecialtiesEmptyFieldTest() {
         specialtiesPage.openPage();
         int countBefore = specialtiesPage.getListElements("specialties").size();
@@ -54,7 +65,10 @@ public class SpecialtiesTest extends TestBase {
         assertEquals(countBefore, countAfter);
     }
 
-    @Test
+    @Story("Edit specialties")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("5241")
+    @Test(description = "Edit specialties  ")
     public void editSpecialtiesTest() {
         specialtiesPage.openPage();
         specialtiesPage.editSpecialties();
@@ -65,7 +79,10 @@ public class SpecialtiesTest extends TestBase {
         ;
     }
 
-    @Test
+    @Story("Delete specialties")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("51241")
+    @Test(description = "Delete specialties  ")
     public void deleteSpecialtiesTest() {
         specialtiesPage.openPage();
         int countBefore = editSpecialties.getListElements("specialties").size();
@@ -74,7 +91,10 @@ public class SpecialtiesTest extends TestBase {
         assertEquals(countBefore - 1, countAfter);
     }
 
-    @Test
+    @Story("Home")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("11241")
+    @Test(description = "Go home")
     public void goHomeButtonTest() {
         specialtiesPage.openPage();
         openHomePage();

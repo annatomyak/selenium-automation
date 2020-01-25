@@ -1,13 +1,43 @@
 package com.automation.homework.pageobject.configuration;
 
 public class Configuration {
+    private static Configuration instance;
+    private String schema = System.getProperty("schema", "http");
+    private String host = System.getProperty("host", "139.59.149.247");
+    private String port = System.getProperty("port", "8000");
+    private String apiPort = System.getProperty("port", "9966");
     private String baseUrl;
-    private static final String BASE_URL = "http://139.59.149.247:8000/petclinic";
-    //private static final String BASE_URL = "http://localhost:8000/petclinic";
+    private String browser = System.getProperty("browser", "chrome");
 
 
-    public String getBaseUrl() {
-        System.getProperty("baseUrl");
+    private Configuration() {
+        init();
+    }
+
+    public static Configuration getInstance() {
+        if (instance == null) {
+            instance = new Configuration();
+        }
+        return instance;
+    }
+
+    //        -DbaseUrl=http://139.59.149.247:8000/petclinic
+    public String baseUrl() {
         return baseUrl;
+    }
+
+    public String getApiPort() {
+        return apiPort;
+    }
+
+    private void init() {
+        this.baseUrl = new UrlBuilder()
+                .withSchema(schema)
+                .withHost(host)
+                .withPort(Integer.parseInt(port)).build();
+    }
+
+    public String getBrowser() {
+        return browser;
     }
 }

@@ -1,5 +1,6 @@
 package com.automation.homework.pageobject.specialities;
 import com.automation.homework.pageobject.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,12 +19,13 @@ public class EditSpecialties extends BasePage {
         super(driver);
 
     }
-
+    @Step
     public EditSpecialties clickUpdate() {
         WebElement clickUpdatebutton=driver.findElement(updateBtn);
         clickUpdatebutton.click();
         return new EditSpecialties(driver);
     }
+    @Step
     public EditSpecialties deleteSpecialties() {
         WebElement clickDeleteButton=driver.findElement(deleteLastItemBtn);
         clickDeleteButton.click();
@@ -32,6 +34,7 @@ public class EditSpecialties extends BasePage {
         assertTrue(isStaneless,"Dont delete element!");
         return new EditSpecialties(driver);
     }
+    @Step
     public List<WebElement> getListElements(String id) {
         List<WebElement> elements = driver.findElements(By.xpath("//*[@id='" + id + "']//tbody/tr"));
         return elements;

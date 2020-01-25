@@ -33,8 +33,8 @@ public class OwnerApiHelper {
     public void deleteOwner(int id) {
         RestAssured.given()
                 .contentType(ContentType.JSON)
-                .delete("/owners" + id)
-                .then().statusCode(200);
+                .delete("/owners/" + id)
+                .then().statusCode(204);
 
     }
 }

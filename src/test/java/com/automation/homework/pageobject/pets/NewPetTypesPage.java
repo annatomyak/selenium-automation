@@ -1,5 +1,6 @@
 package com.automation.homework.pageobject.pets;
 import com.automation.homework.pageobject.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,17 +19,17 @@ public class NewPetTypesPage extends BasePage {
         super(driver);
 
     }
-
+    @Step
     public void fillPetTypes(PetTypesObject petTypesObject) {
         setPetTypes(petTypesObject.getName());
     }
-
+    @Step
     public void setPetTypes(String petTypes) {
         WebElement petTypefield = driver.findElement(petField);
         petTypefield.clear();
         petTypefield.sendKeys(petTypes);
     }
-
+    @Step
     public NewPetTypesPage clickSavePetTypesBtn() {
         WebElement saveButton = driver.findElement(saveBtn);
         saveButton.click();
@@ -37,13 +38,13 @@ public class NewPetTypesPage extends BasePage {
         assertTrue(isStaneless, "Dont save item");
         return new NewPetTypesPage(driver);
     }
-
+    @Step
     public NewPetTypesPage clickSavePetTypes() {
         WebElement saveButton = driver.findElement(saveBtn);
         saveButton.click();
         return new NewPetTypesPage(driver);
     }
-
+    @Step
     public NewPetTypesPage clickAddPetTypesButton() {
         WebElement addPetTypesBtn = driver.findElement(addBtn);
         addPetTypesBtn.click();

@@ -1,9 +1,12 @@
 package com.automation.homework.pageobject.tests;
+import com.automation.homework.listener.MyCustomListener;
 import com.automation.homework.pageobject.TestBase;
 import com.automation.homework.pageobject.vets.NewVeterinarians;
 import com.automation.homework.pageobject.vets.VeterinarianObject;
 import com.automation.homework.pageobject.vets.VeterinariansPage;
+import io.qameta.allure.*;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -11,6 +14,10 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertEquals;
 
+
+@Epic("Petclinic")
+@Feature("Veterinarians")
+@Listeners({MyCustomListener.class})
 public class VetsTest extends TestBase {
     private VeterinariansPage veterinariansPage;
     private VeterinarianObject veterinarianObject;
@@ -23,7 +30,10 @@ public class VetsTest extends TestBase {
         newVeterinarians=new NewVeterinarians(driver);
     }
 
-    @Test
+    @Story("Create Veterinarians")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("12691")
+    @Test(description = "Add new valid veterinarians ")
     public void addVetsPositiveTest(){
         veterinariansPage.openPage();
         veterinariansPage.clickAddVetBtn();
@@ -37,7 +47,10 @@ public class VetsTest extends TestBase {
 
 
     }
-    @Test
+    @Story("Create Veterinarians")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("12691")
+    @Test(description = "Add new veterinarian with one letter in first name ")
     public void addNewVetsWithOneLetterInNameTest() {
 
         veterinariansPage.openPage();
@@ -49,7 +62,10 @@ public class VetsTest extends TestBase {
         newVeterinarians.clickAddVetButton();
         assertEquals(newVeterinarians.errorOneLetterinName(), "First name must be at least 2 characters long");
     }
-    @Test
+    @Story("Create Veterinarians")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("12691")
+    @Test(description = "Add new veterinarian with one letter in last name ")
     public void addNewVetsWithOneLetterInLastNameTest() {
 
         veterinariansPage.openPage();
@@ -63,10 +79,10 @@ public class VetsTest extends TestBase {
     }
 
 
-
-
-
-    @Test
+    @Story("Create Veterinarians")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("691")
+    @Test(description = "Add new veterinarian with empty in first name ")
     public void addNewVetWithEmptyInFirstNameTest() {
 
         veterinariansPage.openPage();
@@ -82,7 +98,10 @@ public class VetsTest extends TestBase {
 
     }
 
-    @Test
+    @Story("Create Veterinarians")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("692")
+    @Test(description = "Add new veterinarian with empty in last name ")
     public void addNewVetWithEmptyInLastNameTest() {
 
         veterinariansPage.openPage();

@@ -1,6 +1,7 @@
 package com.automation.homework.pageobject;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -35,7 +36,7 @@ public class TestBase {
     public void tearDown() {
         driver.quit();
     }
-
+    @Step
     public void openHomePage() {
         goToUrl(BASE_URL + "/welcome", "Welcome");
     }
@@ -43,18 +44,18 @@ public class TestBase {
     protected WebDriverWait waitFor() {
         return new WebDriverWait(driver, 4);
     }
-
+    @Step
     protected void goToUrl(String url, String title) {
         driver.get(url);
         waitFor().withMessage(title + " page is not open!")
                 .until(ExpectedConditions.textToBe(By.xpath("//h2"), title));
     }
-
+    @Step
     public WebElement getLastItem(String id, String name) {
         WebElement lastItem = driver.findElement(By.xpath("//*[@id='" + id + "']/tbody/tr[last()]//*[@name='" + name + "']"));
         return lastItem;
     }
-
+    @Step
     public void clearField(By field) {
         WebElement fieldForClear = driver.findElement(field);
         fieldForClear.sendKeys(Keys.BACK_SPACE);

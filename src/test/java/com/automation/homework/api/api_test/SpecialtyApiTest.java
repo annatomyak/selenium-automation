@@ -1,19 +1,19 @@
 package com.automation.homework.api.api_test;
-
+import com.automation.homework.api.helpers.SpecApiHelper;
 import com.automation.homework.api.helpers.TestBaseApi;
-import com.automation.homework.api.models.PetApi;
 import com.automation.homework.api.models.Specialty;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.ResponseBodyExtractionOptions;
 import org.testng.annotations.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.core.IsNull.notNullValue;
 
 public class SpecialtyApiTest extends TestBaseApi {
+    SpecApiHelper specApiHelper=new SpecApiHelper();
+    Specialty specialty;
+
     @Test
     public void getSpecialtiesTest()  {
         RestAssured.given()
@@ -68,15 +68,36 @@ public class SpecialtyApiTest extends TestBaseApi {
 
         assertThat(specialty.getId()).isNotEqualTo(0);
         assertThat(specialty.getName()).isEqualTo(specialtyDoctor.getName());
+        specApiHelper.deleteSpec(specialty);
     }
 
     @Test
-    public void deletePetTypeByIdTest() {
-        int petId = 118;
+    public void deleteSpecTest() {
+        Specialty specialty;
+        specialty = specApiHelper.addSpecDefault();
+
         RestAssured.given()
-                .log().all()
-                .delete("/pettypes/{id}", petId)
-                .then()
-                .statusCode(204);
+                .contentType(ContentType.JSON)
+                .delete("/specialties/" +specialty.getId())
+                .then().statusCode(204);
+
+    }
+    @Test
+    public void putSpecTest() {
+        specialty = specApiHelper.addSpecDefault();
+        Specialty updateSpecialty=new Specialty();
+
+        updateSpecialty.setName("laboratory assistant");
+        updateSpecialty.setId(specialty.getId());
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .body(updateSpecialty)
+                .put("/specialties/" +updateSpecialty.getId())
+                .then().statusCode(204)
+                .log().all();
+
+        //specApiHelper.getSpecialtiesByIdTest();
+        specApiHelper.deleteSpec(updateSpecialty);
+
     }
 }

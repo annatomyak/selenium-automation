@@ -1,6 +1,7 @@
 package com.automation.homework.pageobject.vets;
 
 import com.automation.homework.pageobject.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Objects;
@@ -13,27 +14,27 @@ public class VeterinarianObject extends BasePage {
     public VeterinarianObject(WebDriver driver) {
         super(driver);
     }
-
+    @Step
     public String getFirstName() {
         return firstName;
     }
-
+    @Step
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
+    @Step
     public String getLastName() {
         return lastName;
     }
-
+    @Step
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
+    @Step
     public String getType() {
         return type;
     }
-
+    @Step
     public void setType(String type) {
         this.type = type;
     }

@@ -1,5 +1,7 @@
 package com.automation.homework.api.api_test;
 
+import com.automation.homework.api.helpers.OwnerApiHelper;
+import com.automation.homework.api.helpers.PetApiHelper;
 import com.automation.homework.api.helpers.TestBaseApi;
 import com.automation.homework.api.models.OwnerApi;
 import com.automation.homework.api.models.PetApi;
@@ -17,27 +19,20 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OwnerNewTest extends TestBaseApi {
+    private OwnerApiHelper ownerApiHelper;
     private OwnerApi owner;
     private Type type;
+    private PetApi pet;
+    private PetApiHelper petApiHelper;
 
 
     @AfterMethod
     public void cleanData() {
-        if (owner != null) {
-            RestAssured.given()
-                    .contentType(ContentType.JSON)
-                    .delete("/owners/" + owner.getId())
-                    .then()
-                    .statusCode(204);
-        }
 
-        if (type != null) {
-            RestAssured.given()
-                    .contentType(ContentType.JSON)
-                    .delete("/pettypes/" + type.getId())
-                    .then()
-                    .statusCode(204);
-        }
+        ownerApiHelper=new OwnerApiHelper();
+        petApiHelper=new PetApiHelper();
+        ownerApiHelper.deleteOwner(owner);
+
     }
 
 
@@ -72,7 +67,7 @@ public class OwnerNewTest extends TestBaseApi {
                 .as(Type.class);
 
 
-        PetApi pet = new PetApi();
+        pet =new PetApi();
         pet.setName("Bob");
         pet.setType(type);
         pet.setBirthDate("2020/01/09");
@@ -118,7 +113,7 @@ public class OwnerNewTest extends TestBaseApi {
                 .extract().body()
                 .as(Type[].class));
 
-        PetApi pet = new PetApi();
+        pet = new PetApi();
         pet.setName("Bob");
         pet.setType(type.get(0));
         pet.setBirthDate("2020/01/09");
