@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Spec" verbose="1" >
+    <test name="Spec test" >
+        <classes>
+            <class name="com.automation.homework.pageobject.tests.SpecialtiesTest" />
+        </classes>
+    </test>
+
+</suite>
+

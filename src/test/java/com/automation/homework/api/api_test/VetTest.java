@@ -1,67 +1,68 @@
 package com.automation.homework.api.api_test;
-
 import com.automation.homework.api.helpers.TestBaseApi;
 import com.automation.homework.api.helpers.VetApiHelper;
-import com.automation.homework.api.models.OwnerApi;
 import com.automation.homework.api.models.Specialty;
 import com.automation.homework.api.models.Vet;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
-
-import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class VetTest extends TestBaseApi {
-    Vet vet=new Vet();
-
-
+    Vet vet = new Vet();
+    VetApiHelper vetApiHelper = new VetApiHelper();
+    List<Specialty> specialtyList = vetApiHelper.getSpecialties();
     @Test
     public void createVetTest() {
         vet.setFirstName("Pablo");
         vet.setLastName("Esscobar");
-        vet = RestAssured.given()
+        RestAssured.given()
                 .contentType(ContentType.JSON)
                 .body(vet)
                 .post("/vets")
                 .then()
+                .log().all()
                 .statusCode(201)
                 .extract().body()
                 .as(Vet.class);
 
     }
+
     @Test
     public void getVetByIdTest() {
+        int vetId = 1;
         RestAssured.given()
-                .get("/vets/{id}", vet.getId())
+                .get("/vets/{id}", vetId)
                 .then()
                 .statusCode(200)
-                .body("id", equalTo(vet.getId()))
-                .body("firstName", equalTo(vet.getFirstName()))
-                .body("lastName", equalTo(vet.getLastName()))
+                .body("id", equalTo(vetId))
+                .body("firstName", equalTo("James"))
+                .body("lastName", equalTo("Carter"))
                 .log().all();
     }
 
+    @Test
+    public void postVetTestWithObjectWithoutSpec(){
+        vet.setFirstName("Anna");
+        vet.setLastName("Tomyak");
 
-    private Vet postVetTestWithObject() {
-        Vet vet = new Vet();
-        vet.setFirstName("testFirstNameApi");
-        vet.setLastName("testLastNameApi");
-
-        return RestAssured.given()
+        RestAssured.given()
                 .contentType(ContentType.JSON)
                 .body(vet)
-                .log().all()
                 .post("/vets")
                 .then()
                 .log().all()
-                .statusCode(201)
-                .extract().body()
-                .as(Vet.class);
+                .statusCode(201);
+//                .extract().body()
+//                .as(Vet.class);
+
     }
 
+    @Test
     public void deleteVetByIdTest(int id) {
+        id=7;
         RestAssured.given()
                 .log().all()
                 .delete("/vets/{id}", id)

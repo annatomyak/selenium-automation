@@ -6,55 +6,60 @@ import java.util.Objects;
 
 public class Vet {
 
-    @JsonProperty("firstName")
-    private String firstName;
     @JsonProperty("id")
     private Integer id;
+    @JsonProperty("firstName")
+    private String firstName;
     @JsonProperty("lastName")
     private String lastName;
     @JsonProperty("specialties")
-    private List<Specialty> specialties = null;
+    private List<Specialty> specialties;
 
-
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-
-    public List<Specialty> getSpecialties() {
-        return specialties;
-    }
-
-    public void setSpecialties(List<Specialty> specialties) {
-        this.specialties = specialties;
-    }
-
+    @JsonProperty("id")
     public Integer getId() {
         return id;
     }
 
+    @JsonProperty("id")
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @JsonProperty("firstName")
+    public String getFirstName() {
+        return firstName;
+    }
+
+    @JsonProperty("firstName")
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    @JsonProperty("lastName")
+    public String getLastName() {
+        return lastName;
+    }
+
+    @JsonProperty("lastName")
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @JsonProperty("specialties")
+    public List<Specialty> getSpecialties() {
+        return specialties;
+    }
+
+    @JsonProperty("specialties")
+    public void setSpecialties(List<Specialty> specialties) {
+        this.specialties = specialties;
     }
 
     @Override
     public String toString() {
         return "Vet{" +
-                "firstName='" + firstName + '\'' +
-                ", id=" + id +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", specialties=" + specialties +
                 '}';
@@ -65,14 +70,14 @@ public class Vet {
         if (this == o) return true;
         if (!(o instanceof Vet)) return false;
         Vet vet = (Vet) o;
-        return Objects.equals(getFirstName(), vet.getFirstName()) &&
-                Objects.equals(id, vet.id) &&
+        return Objects.equals(getId(), vet.getId()) &&
+                Objects.equals(getFirstName(), vet.getFirstName()) &&
                 Objects.equals(getLastName(), vet.getLastName()) &&
                 Objects.equals(getSpecialties(), vet.getSpecialties());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFirstName(), id, getLastName(), getSpecialties());
+        return Objects.hash(getId(), getFirstName(), getLastName(), getSpecialties());
     }
 }

@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="UIVets" verbose="1" parallel="classes" thread-count="2" >
+    <test name="Owner test" >
+        <classes>
+            <class name="com.automation.homework.pageobject.tests.NewOwnerTest" />
+            <class name="com.automation.homework.pageobject.tests.SpecialtiesTest" />
+
+        </classes>
+    </test>
+</suite>
+
